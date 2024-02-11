@@ -1,8 +1,7 @@
-import java.util.ArrayList;
 /*Using the concept of Fibonacci here*/
 
 
-public class Stairs {
+public class PAT_Class_Stairs {
     public static void main(String[] args) {
         int n=4;
         System.out.println("Number of ways: "+nthFibonacci(n+1,0,1,1));
