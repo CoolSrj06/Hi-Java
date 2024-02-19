@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pat_Class_Questions {
@@ -20,7 +21,7 @@ public class Pat_Class_Questions {
 //        System.out.println("(Max,Min) = ("+max+","+min+")");
 
         /* calling isPrime function */
-        isPrime(25);
+        sementedSeive(10,100);
 
     }
 
@@ -43,8 +44,9 @@ public class Pat_Class_Questions {
     * Space Complexity: O(N)
     */
 
-    public static void isPrime(int n){
+    public static ArrayList<Integer> isPrime(int n){
         boolean[] arr=new boolean[n+1];
+        ArrayList<Integer> ans=new ArrayList<>();
         for (int i=2;i<=Math.sqrt(n);i++){
             int c=i*i;
             if(!arr[i]){
@@ -56,8 +58,32 @@ public class Pat_Class_Questions {
         }
         for (int i=2;i<n+1;i++){
             if (!arr[i])
-                System.out.print(i+" ");
+                ans.add(i);
         }
+        return ans;
     }
 
+    /* Day 6: Find all the prime numbers withing a range using segmented seive algorithm
+
+     */
+
+    public static void sementedSeive(int start,int end){
+        ArrayList<Integer> prime=isPrime((int)Math.sqrt(end));
+        boolean[] arr=new boolean[end-start+1];
+        for (int i = 0; i < prime.size(); i++) {
+            int c=1;
+            while (prime.get(i)*c<=end){
+                if (prime.get(i)*c>=start){
+                    arr[(prime.get(i)*c)-start]=true;
+                    c++;
+                }
+                else
+                        c++;
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (!arr[i])
+                System.out.println(i+start);
+        }
+    }
 }
